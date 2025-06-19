@@ -1,6 +1,7 @@
 # 🗃️ Django Job Board
 
-A clean, modern job board web app built with Django and Tailwind CSS. Users can browse job postings, view detailed job info, and apply with a custom resume upload form.
+Job Board is a dynamic and responsive web-based job portal application developed using Django for the backend and HTML, CSS, JavaScript, and Bootstrap for the frontend. The platform enables employers to post job openings while allowing job seekers to browse and search available opportunities. It features complete CRUD operations for job listings, user-friendly navigation, and an admin dashboard for managing job posts. Additional functionalities include form validations, search and filter options, pagination for organized job displays, and a contact inquiry form.
+
 
 ---
 
