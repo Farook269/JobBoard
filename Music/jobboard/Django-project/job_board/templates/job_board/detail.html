@@ -1,0 +1,428 @@
+
+{% extends 'job_board/_base.html' %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <!-- <a href="{% url 'home' %}" class="button">← Go Back</a>
+
+    <div class="job-card" style="margin-top: 20px;">
+        <div class="job-title">{{ posting.title }}</div>
+        <div class="job-company">Company: {{ posting.company }}</div>
+        <div class="job-salary">Salary: ${{ posting.salary|intcomma }}</div>
+        <div class="job-description">{{ posting.description }}</div>
+    </div>
+    <div style="
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f4f8fb;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    animation: fadeIn 1s ease-in-out;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+"> -->
+
+
+
+
+
+
+
+<a href="{% url 'home' %}" class="back-button">← Go Back</a>
+
+<div class="job-card">
+    <div class="job-title">{{ posting.title }}</div>
+    <div class="job-company">🏢 Company: <strong>{{ posting.company }}</strong></div>
+    <div class="job-salary">💰 Salary: ${{ posting.salary|intcomma }}</div>
+    <div class="job-description">{{ posting.description }}</div>
+</div>
+
+<style>
+    .back-button {
+        display: inline-block;
+        margin: 20px 0;
+        background-color: #004080;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+        background-color: #003366;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .job-card {
+        margin: 30px auto;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        max-width: 750px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    .job-title {
+        font-size: 30px;
+        font-weight: 700;
+        color: #003366;
+        margin-bottom: 15px;
+    }
+
+    .job-company, .job-salary {
+        font-size: 17px;
+        color: #444;
+        margin-bottom: 12px;
+    }
+
+    .job-description {
+        font-size: 16px;
+        line-height: 1.7;
+        color: #555;
+        margin-top: 20px;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .job-card {
+            padding: 20px;
+            margin: 20px 10px;
+        }
+
+        .job-title {
+            font-size: 24px;
+        }
+
+        .job-company, .job-salary, .job-description {
+            font-size: 15px;
+        }
+
+        .back-button {
+            padding: 10px 16px;
+            font-size: 13px;
+        }
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h1 style="font-size: 28px; color: #003366; margin-bottom: 10px;">Job Board - Apply Now</h1>
+    <p style="font-size: 16px; color: #555; margin-bottom: 25px;">
+        Fill out the form below to apply for this position. Please ensure that all details are accurate and up-to-date.
+    </p>
+
+    <h3 style="margin-top: 20px; font-size: 22px; color: #004080;">📋 Apply for this Job</h3>
+
+    <form method="POST" enctype="multipart/form-data" style="
+        margin-top: 20px;
+        background-color: #ffffff;
+        padding: 30px;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    ">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" style="
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 22px;
+            border: none;
+            border-radius: 6px;
+            font-size: 17px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        ">Submit Application</button>
+
+        <style>
+            form input, form select, form textarea {
+                width: 100%;
+                padding: 14px 16px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                box-sizing: border-box;
+                font-size: 15px;
+                background-color: #fefefe;
+                transition: all 0.3s ease;
+            }
+
+            form input:focus, form select:focus, form textarea:focus {
+                border-color: #4CAF50;
+                background-color: #f9fff9;
+                outline: none;
+                box-shadow: 0 0 8px rgba(76, 175, 80, 0.25);
+            }
+
+            form button:hover {
+                background-color: #45a049;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            }
+
+            @media (max-width: 768px) {
+                form {
+                    padding: 20px;
+                    margin: 20px 10px;
+                }
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        </style>
+    </form>
+
+    <p style="margin-top: 25px; font-size: 14px; color: #666;">
+        📧 If you face any issues while submitting the form, please contact our HR team at 
+        <a href="mailto:hr@example.com" style="color: #004080; text-decoration: none;">jobboardagency@gmail.com</a>.
+    </p>
+
+</div>
+
+
+
+
+<!-- <form method="POST" enctype="multipart/form-data" style="
+    margin-top: 20px;
+    background-color: #f9f9ff;
+    padding: 25px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    max-width: 700px;
+">
+  {% csrf_token %}
+  {% crispy form %}
+</form> -->
+
+
+<!-- 
+    {% if applications %}
+  <h3 style="margin-top: 30px; color: #004080;">Applications Received</h3>
+  <div style="display: flex; flex-direction: column; gap: 20px;">
+    {% for app in applications %}
+      <div style="background-color: #eef4ff; padding: 20px; border-left: 5px solid #004080; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+        <p><strong style="color: #004080;">👤 Name:</strong> {{ app.name }}</p>
+        <p><strong style="color: #004080;">✉️ Email:</strong> <a href="mailto:{{ app.email }}">{{ app.email }}</a></p>
+        <p><strong style="color: #004080;">📎 Resume:</strong>
+          {% if app.resume %}
+            <a href="{{ app.resume.url }}" target="_blank" style="color: #0066cc; text-decoration: underline;">Download Resume</a>
+          {% else %}
+            <span style="color: #999;">No file</span>
+          {% endif %}
+        </p>
+        <p><strong style="color: #004080;">📝 Message:</strong> {{ app.message }}</p>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p style="margin-top: 20px; color: #888;">No one has applied yet.</p>
+{% endif %} -->
+
+
+{% if messages %}
+  <div class="message-container">
+    {% for message in messages %}
+      <p class="message-success">{{ message }}</p>
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% if applications %}
+  <h3 class="applications-heading">📑 Applications Received</h3>
+
+  <div class="applications-grid">
+    {% for app in applications %}
+      <div class="application-card">
+        <p><strong class="label">👤 Name:</strong> {{ app.name }}</p>
+        <p><strong class="label">✉️ Email:</strong>
+          <a href="mailto:{{ app.email }}" class="email-link">{{ app.email }}</a>
+        </p>
+        <p><strong class="label">📎 Resume:</strong>
+          {% if app.resume %}
+            <a href="{{ app.resume.url }}" target="_blank" class="download-link">Download Resume</a>
+          {% else %}
+            <span class="no-file">No file</span>
+          {% endif %}
+        </p>
+        <p><strong class="label">📝 Message:</strong> {{ app.message }}</p>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p class="no-applications">No one has applied yet.</p>
+{% endif %}
+
+<style>
+  .message-container {
+    margin: 20px 0;
+  }
+
+  .message-success {
+    color: #16a34a;
+    background-color: #dcfce7;
+    padding: 12px 18px;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+
+  .applications-heading {
+    margin-top: 40px;
+    color: #003366;
+    font-weight: 700;
+    font-size: 26px;
+    text-align: center;
+  }
+
+  .applications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin: 30px auto;
+    max-width: 1200px;
+  }
+
+  .application-card {
+    background-color: #ffffff;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .application-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    border-color: #d1d5db;
+  }
+
+  .label {
+    color: #1e3a8a;
+    font-weight: 600;
+  }
+
+  .email-link, .download-link {
+    color: #2563eb;
+    text-decoration: underline;
+  }
+
+  .no-file {
+    color: #9ca3af;
+  }
+
+  .no-applications {
+    margin-top: 30px;
+    color: #888;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .applications-grid {
+      grid-template-columns: 1fr;
+      margin: 20px 10px;
+    }
+
+    .applications-heading {
+      font-size: 22px;
+    }
+  }
+</style>
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+{% if messages %}
+  <div>
+    {% for message in messages %}
+      <p class="text-green-600">{{ message }}</p>
+    {% endfor %}
+  </div>
+{% endif %}
+{% if applications %}
+  <h3 style="margin-top: 30px; color: #004080; font-weight: 700; font-size: 24px;">Applications Received</h3>
+  <div style="display: grid; grid-template-columns: repeat(auto-fill,minmax(320px,1fr)); gap: 24px; margin-top: 20px;">
+    {% for app in applications %}
+      <div style="
+        background-color: #f9fafb;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        border: 1px solid #e2e8f0;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      " 
+      onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.15)';" 
+      onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(0,0,0,0.1)';"
+      >
+        <p><strong style="color: #1e40af; font-weight: 600;">👤 Name:</strong> {{ app.name }}</p>
+        <p><strong style="color: #1e40af; font-weight: 600;">✉️ Email:</strong> <a href="mailto:{{ app.email }}" style="color: #2563eb; text-decoration: underline;">{{ app.email }}</a></p>
+        <p><strong style="color: #1e40af; font-weight: 600;">📎 Resume:</strong>
+          {% if app.resume %}
+            <a href="{{ app.resume.url }}" target="_blank" style="color: #2563eb; text-decoration: underline;">Download Resume</a>
+          {% else %}
+            <span style="color: #9ca3af;">No file</span>
+          {% endif %}
+        </p>
+        <p><strong style="color: #1e40af; font-weight: 600;">📝 Message:</strong> {{ app.message }}</p>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p style="margin-top: 20px; color: #888;">No one has applied yet.</p>
+{% endif %}
+
+
+{% endblock content %}
+ -->

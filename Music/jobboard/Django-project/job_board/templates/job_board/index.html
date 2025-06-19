@@ -1,0 +1,22 @@
+{% extends 'job_board/_base.html' %}
+{% load humanize %}
+
+{% block content %}
+    <h2 style="font-size: 28px; margin-bottom: 20px;">Available Job Postings</h2>
+    <div class="job-grid">
+        {% for posting in job_postings %}
+            <div class="job-card">
+                <div class="job-title">{{ posting.title }}</div>
+                <div class="job-company-name">🏢 {{ posting.company }}</div>
+                
+                {% if posting.company_logo %}
+                    <img src="{{ posting.company_logo.url }}" alt="{{ posting.company }}" style="max-height: 60px; margin: 10px 0;">
+                {% else %}
+                    <div style="font-size: 12px; color: #888;">No logo available</div>
+                {% endif %}
+
+                <a href="{% url 'job-detail' posting.pk %}" class="button">View Details</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
